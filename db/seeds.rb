@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Install faker gem first w/ bundle install
+
+puts 'Cleaning up database'
+Restaurant.delete_all
+
+puts 'Creating 5 restaurants...'
+
+5.times do
+  Restaurant.create(
+    name: Faker::Restaurant.name,
+    address: Faker::Address.full_address,
+    phone_number: Faker::PhoneNumber.phone_number_with_country_code,
+    category: Restaurant::CATEGORIES.sample
+  )
+end
+
+puts 'Finished!'
